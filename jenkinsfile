@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+    stages {
+        stage ('set up') {
+            steps {
+                sh "pip3 install tests/requirements.txt"
+            }
+        }
+        stage ('build') {
+            steps {
+                sh "sam build -t template.yaml"
+            }
+        }
+        stage ('deply') {
+            environment {
+                AWS_ACCESS_KEY_ID = credentials('aws-access-key')
+                AWS_SECRET_ACCESS-KEY = credentials('aws-secret-access-key')
+            }
+            steps {
+                sh "sam deploy -t template.yaml"
+            }
+        }
+    }
+}
