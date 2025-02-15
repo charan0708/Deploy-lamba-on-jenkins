@@ -11,10 +11,10 @@ pipeline {
                 sh "sam build -t template.yaml"
             }
         }
-        stage ('deply') {
+        stage ('deploy') {
             environment {
                 AWS_ACCESS_KEY_ID = credentials('aws-access-key')
-                AWS_SECRET_ACCESS-KEY = credentials('aws-secret-access-key')
+                AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
             }
             steps {
                 sh "sam deploy -t template.yaml"
