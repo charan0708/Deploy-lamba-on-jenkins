@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage ('set up') {
             steps {
-                sh "pip3 install tests/requirements.txt"
+                sh "pip3 install -r tests/requirements.txt"
             }
         }
         stage ('build') {
